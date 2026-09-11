@@ -26,7 +26,7 @@ export function AppSidebar({
 
   return (
     <aside
-      className={`z-50 flex w-[228px] min-w-[228px] flex-col border-r border-[var(--ink-line)] bg-white transition-transform duration-200 max-md:fixed max-md:inset-y-0 max-md:h-dvh md:sticky md:top-0 md:z-0 md:h-auto md:self-start ${
+      className={`z-50 flex w-[228px] min-w-[228px] flex-col overflow-hidden border-r border-[var(--ink-line)] bg-white transition-transform duration-200 max-md:fixed max-md:inset-y-0 max-md:h-dvh md:sticky md:top-0 md:z-0 md:h-dvh md:max-h-dvh md:self-start ${
         collapsed ? "md:w-[76px] md:min-w-[76px]" : "md:w-[228px] md:min-w-[228px]"
       } ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
     >
@@ -46,7 +46,7 @@ export function AppSidebar({
           <AssetIcon src="/icons/nav-collapse.svg" alt="" box={13} leaf={13} />
         </button>
       </div>
-      <nav className="flex flex-col gap-1 px-2 py-2.5 max-md:min-h-0 max-md:flex-1 max-md:overflow-y-auto">
+      <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-2 py-2.5">
         {/* Nav icons are Figma exports at 16×16 */}
         {items.map((item) => {
           const active = path === item.href || (item.href !== "/" && path.startsWith(item.href));
@@ -71,7 +71,7 @@ export function AppSidebar({
           );
         })}
       </nav>
-      <div className={`flex items-center px-2.5 py-3 max-md:mt-auto ${collapsed ? "justify-center" : "gap-2.5"}`}>
+      <div className={`mt-auto flex h-[58px] shrink-0 items-center border-t border-[var(--ink-line)] bg-white px-2.5 ${collapsed ? "justify-center" : "gap-2.5"}`}>
         <div className="flex size-[30px] items-center justify-center rounded-[15px] border-[0.8px] border-[#1b7a43] bg-[var(--primary-100)]">
           <span className="font-[family-name:var(--font-space)] text-[11px] font-bold leading-[16.5px] text-[#1b7a43]">
             SC
