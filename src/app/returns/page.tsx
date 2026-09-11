@@ -35,6 +35,7 @@ export default function ReturnsPage() {
                     <StatusBadge status={r.status} />
                   </td>
                   <td className="px-4 py-3 text-right">
+                    {r.status !== "Refunded" ? (
                       <button
                         type="button"
                         onClick={() => refundReturn(r.id)}

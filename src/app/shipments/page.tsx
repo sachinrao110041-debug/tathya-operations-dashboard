@@ -35,6 +35,7 @@ export default function ShipmentsPage() {
                     <StatusBadge status={s.status} />
                   </td>
                   <td className="px-4 py-3 text-right">
+                    {s.status !== "Delivered" ? (
                       <button
                         type="button"
                         onClick={() => resolveShipment(s.id)}

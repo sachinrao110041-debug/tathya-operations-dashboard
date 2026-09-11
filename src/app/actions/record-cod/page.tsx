@@ -62,6 +62,9 @@ export default function RecordCodPage() {
                       <StatusBadge status={order.status} />
                     </td>
                     <td className="px-4 py-3 text-right">
+                      <button
+                        type="button"
+                        onClick={() => recordCodById(order.id)}
                         className="rounded-md border border-[var(--primary-300)] px-2 py-1 text-xs text-[var(--primary-400)]"
                       >
                         Record
