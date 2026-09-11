@@ -17,20 +17,20 @@ export function RecentOrders({ query }: { query: string }) {
           <h2 className="text-2xl leading-8 text-[var(--ink)]">Recent orders</h2>
           <p className="pt-1 text-xs font-semibold leading-4 text-[var(--ink-muted)]">Last 24 hours</p>
         </div>
-        <Link href="/orders" className="py-2 text-xs text-[#1b7a43]">
+        <Link href="/orders" className="rounded-full border border-[var(--primary-100)] px-3 py-1.5 text-xs text-[var(--primary-400)]">
           View all →
         </Link>
       </div>
-      <div className="mt-3 overflow-hidden rounded-2xl border border-[var(--primary-100)] bg-white">
+      <div className="mt-3 overflow-hidden rounded-2xl border border-[var(--primary-100)] bg-white shadow-[var(--elev-1)]">
         <table className="w-full text-left">
           <thead>
             <tr className="border-b-[0.8px] border-[var(--neutral-200)] bg-[rgba(17,28,21,0.02)] text-xs uppercase tracking-[0.6px] text-[var(--primary-300)]">
-              <th className="px-4 py-2 font-normal">Order</th>
-              <th className="px-2 py-2 font-normal">Customer</th>
-              <th className="px-2 py-2 font-normal">Amount</th>
-              <th className="px-2 py-2 font-normal">Status</th>
-              <th className="px-2 py-2 font-normal">Date</th>
-              <th className="px-2 py-2 font-normal">Action</th>
+              <th className="px-4 py-3 font-normal">Order</th>
+              <th className="px-2 py-3 font-normal">Customer</th>
+              <th className="px-2 py-3 font-normal">Amount</th>
+              <th className="px-2 py-3 font-normal">Status</th>
+              <th className="px-2 py-3 font-normal">Date</th>
+              <th className="px-2 py-3 font-normal">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -64,7 +64,7 @@ export function RecentOrders({ query }: { query: string }) {
                           body: `${o.customer} • ${o.amount} • ${o.items} item(s) • ${o.status}`,
                         })
                       }
-                      className="text-xs text-[var(--yellow-200)]"
+                      className="rounded-full border border-[var(--primary-100)] px-2 py-1 text-xs text-[var(--primary-400)]"
                     >
                       Details
                     </button>

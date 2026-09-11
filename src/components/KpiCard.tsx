@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 export function KpiCard({
   title,
   value,
@@ -11,52 +9,50 @@ export function KpiCard({
   value: string;
   chart: string;
 }) {
-  const [range, setRange] = useState<"today" | "yesterday">("today");
-  const today = [42, 30, 18, 26, 34, 38];
-  const yesterday = [20, 28, 32, 40, 22, 16];
+  const current = [58, 44, 36, 51, 42, 63];
+  const previous = [46, 40, 39, 42, 45, 54];
+  const labels = ["M", "T", "W", "T", "F", "S"];
 
   return (
-    <button
-      type="button"
-      onClick={() => setRange((r) => (r === "today" ? "yesterday" : "today"))}
-      className="h-[124px] w-full appearance-none overflow-hidden rounded-[16px] border border-[var(--primary-100)] bg-[var(--base-alpha-50)] p-[3px] text-left shadow-[0px_4px_16px_0px_rgba(0,0,0,0.04)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-200)] focus-visible:ring-offset-1"
-    >
-      <div className="grid h-full grid-rows-[78px_1fr] rounded-xl bg-white px-2 py-2">
-        <div className="grid min-h-0 grid-cols-[1fr_116px] items-start gap-3">
-          <div className="shrink-0 pt-0.5">
-            <p className="text-sm font-semibold leading-5">{title}</p>
-            <p className="text-base font-semibold leading-6">
-              {range === "today" ? value : String(Math.max(1, Number(value) - 4))}
-            </p>
-          </div>
-          <div className="mt-1 flex h-[58px] w-[116px] shrink-0 items-end gap-1.5 overflow-hidden">
-            {today.map((h, i) => (
-              <div key={`bar-${i}`} className="relative flex h-full w-[14px] items-end">
-                <span
-                  className="absolute bottom-0 left-0 w-[14px] rounded-t-[30px] bg-[var(--primary-100)]"
-                  style={{ height: `${Math.min(58, h)}px` }}
-                />
-                <span
-                  className="absolute bottom-0 left-[3px] w-[8px] rounded-t-[30px] bg-[var(--primary-300)]"
-                  style={{ height: `${Math.min(58, yesterday[i])}px` }}
-                />
-              </div>
-            ))}
-          </div>
+    <div className="h-[156px] w-full overflow-hidden rounded-2xl border border-[var(--primary-100)] bg-white p-4 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.04)]">
+      <div className="mb-2 flex items-start justify-between">
+        <div>
+          <p className="text-sm font-semibold leading-5 text-[var(--neutral-900)]">{title}</p>
+          <p className="text-[28px] font-semibold leading-8 text-[var(--neutral-1000)]">{value}</p>
         </div>
-        <div className="flex items-end justify-between gap-2 pb-0.5">
-          <span className="flex items-center gap-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/icons/legend-today.svg" alt="" width={16} height={8} className="block" />
-            <span className="text-[10px] leading-4">Today</span>
-          </span>
-          <span className="flex min-w-0 items-center gap-1.5">
-            <span className="h-2 w-4 shrink-0 rounded-[20px] bg-[var(--primary-300)]" />
-            <span className="text-[10px] leading-4">Yesterday</span>
-            <span className="truncate text-[10px] leading-[18px] text-[#9d9893]">+12% vs yesterday</span>
-          </span>
+        <div className="text-right">
+          <p className="text-[10px] font-medium uppercase tracking-[0.6px] text-[var(--neutral-600)]">6-day trend</p>
+          <p className="text-xs text-[var(--primary-300)]">+12% vs previous</p>
         </div>
       </div>
-    </button>
+
+      <div className="grid h-[74px] grid-cols-6 gap-2">
+        {current.map((h, i) => (
+          <div key={`${title}-${i}`} className="flex h-full flex-col items-center justify-end gap-1">
+            <div className="flex h-[62px] items-end gap-[3px]">
+              <span
+                className="block w-[8px] rounded-t-sm bg-[var(--primary-100)]"
+                style={{ height: `${Math.max(10, Math.min(62, previous[i]))}px` }}
+              />
+              <span
+                className="block w-[8px] rounded-t-sm bg-[var(--primary-400)]"
+                style={{ height: `${Math.max(10, Math.min(62, h))}px` }}
+              />
+            </div>
+            <span className="text-[10px] text-[var(--neutral-600)]">{labels[i]}</span>
+          </div>
+        ))}
+      </div>
+      <div className="mt-1 flex items-center gap-3 text-[10px] text-[var(--neutral-700)]">
+        <span className="inline-flex items-center gap-1">
+          <span className="h-2 w-2 rounded-full bg-[var(--primary-400)]" />
+          Current
+        </span>
+        <span className="inline-flex items-center gap-1">
+          <span className="h-2 w-2 rounded-full bg-[var(--primary-100)]" />
+          Previous
+        </span>
+      </div>
+    </div>
   );
 }

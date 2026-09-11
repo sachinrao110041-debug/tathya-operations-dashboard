@@ -62,8 +62,8 @@ export default function OverviewPage() {
   }, [range]);
 
   return (
-    <div className="block w-full space-y-4">
-      <div className="flex h-12 items-center px-3">
+    <div className="mx-auto block w-full max-w-[1260px] space-y-6">
+      <div className="flex h-12 items-center px-1">
         <p className="text-sm leading-5 text-[var(--neutral-800)]">Monday, 17 August 2026</p>
         <span className="ml-2 inline-flex items-center gap-1 rounded-full bg-[var(--green-alpha-10)] px-2 py-1 text-sm text-[var(--primary-400)]">
           <span className="size-1.5 rounded-full bg-[var(--green-200)]" />
@@ -71,9 +71,9 @@ export default function OverviewPage() {
         </span>
       </div>
 
-      <div className="flex w-full items-center justify-between rounded-2xl border border-[var(--green-alpha-10)] px-3 py-1">
+      <div className="flex w-full flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--green-alpha-10)] bg-white px-4 py-3 shadow-[var(--elev-1)]">
         <p className="text-base font-semibold leading-6 text-[var(--primary-400)]">Todays Overview</p>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <div className="mr-2 flex rounded-lg border border-[var(--green-alpha-10)] p-1">
             {[
               ["today", "Today"],
@@ -114,10 +114,17 @@ export default function OverviewPage() {
           >
             Record COD
           </button>
+          <button
+            type="button"
+            onClick={() => router.push("/onboarding")}
+            className="rounded-[8px] border border-[var(--primary-200)] px-3 py-2 text-[13px] text-[var(--primary-400)]"
+          >
+            Onboarding
+          </button>
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2 rounded-xl bg-white/80 p-2">
         {[
           ["all", "All"],
           ["orders", "Orders"],
@@ -135,10 +142,10 @@ export default function OverviewPage() {
               if (key === "inventory") router.push("/inventory");
               if (key === "cod") router.push("/orders?filter=cod");
             }}
-            className={`rounded-full px-3 py-1 text-xs ${
+            className={`rounded-full px-3 py-1.5 text-xs ${
               focus === key
                 ? "bg-[var(--primary-400)] text-white"
-                : "border border-[var(--green-alpha-10)] text-[var(--neutral-800)]"
+                : "border border-[var(--green-alpha-10)] bg-white text-[var(--neutral-800)]"
             }`}
           >
             {label}
@@ -146,15 +153,20 @@ export default function OverviewPage() {
         ))}
       </div>
 
-      <div className="mt-4 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mt-4 grid w-full grid-cols-1 gap-4 lg:grid-cols-3">
         {metrics.kpis.map((kpi) => (
-          <button key={kpi.title} type="button" onClick={() => router.push(kpi.href)} className="text-left">
+          <button
+            key={kpi.title}
+            type="button"
+            onClick={() => router.push(kpi.href)}
+            className="rounded-2xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-200)]"
+          >
             <KpiCard title={kpi.title} value={kpi.value} chart={kpi.chart} />
           </button>
         ))}
       </div>
 
-      <div className="mt-8">
+      <div className="mt-8 rounded-2xl border border-[var(--ink-line)] bg-white p-4 shadow-[var(--elev-1)]">
         <h2 className="text-[24px] leading-7 text-[var(--ink)]">Needs your attention</h2>
         <p className="mt-1 text-sm leading-5 text-[var(--neutral-800)]">A few things need action today.</p>
         <div className="mt-4">
@@ -182,11 +194,11 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white p-4 shadow-[var(--elev-1)]">
         <RecentOrders query={query} />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white p-4 shadow-[var(--elev-1)]">
         <InventoryWatch
           onReorder={(name) =>
             setPanel({
@@ -204,13 +216,13 @@ export default function OverviewPage() {
         />
       </div>
 
-      <section className="mt-10 rounded-2xl px-4 py-4">
+      <section className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white px-4 py-4 shadow-[var(--elev-1)]">
         <h2 className="text-2xl leading-8 text-[var(--ink)]">
           Operations snapshot · {range === "today" ? "Today" : range === "week" ? "This week" : "This month"}
         </h2>
-        <div className="mt-3 grid grid-cols-4 gap-6">
+        <div className="mt-3 grid grid-cols-2 gap-6 lg:grid-cols-4">
           {metrics.snapshot.map(([a, b, c]) => (
-            <div key={b} className="border-r border-[var(--neutral-200)] last:border-0">
+            <div key={b} className="border-r border-[var(--neutral-200)] pr-3 even:border-r-0 lg:even:border-r lg:last:border-r-0">
               <p className="text-[28px] leading-7 font-normal">{a}</p>
               <p className="mt-1 text-sm leading-6">{b}</p>
               <p className="text-xs leading-5 text-[var(--primary-300)]">{c}</p>

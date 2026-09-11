@@ -12,11 +12,11 @@ export function InventoryWatch({ onReorder }: { onReorder: (name: string) => voi
           <h2 className="text-2xl leading-8 text-[var(--neutral-1000)]">Inventory watch</h2>
           <p className="pt-1 text-xs font-semibold leading-4 text-[var(--primary-400)]">Products needing attention</p>
         </div>
-        <Link href="/inventory" className="p-2 text-sm text-[var(--yellow-200)]">
+        <Link href="/inventory" className="rounded-full border border-[var(--primary-100)] px-3 py-1.5 text-xs text-[var(--primary-400)]">
           Review all →
         </Link>
       </div>
-      <div className="mt-3 overflow-hidden rounded-2xl bg-[var(--surface)]">
+      <div className="mt-3 overflow-hidden rounded-2xl border border-[var(--primary-100)] bg-white shadow-[var(--elev-1)]">
         {inventory.map((item) => {
           const pct = Math.max(4, (item.left / item.max) * 100);
           const urgent = item.left <= 5;
@@ -25,7 +25,7 @@ export function InventoryWatch({ onReorder }: { onReorder: (name: string) => voi
               key={item.name}
               className="flex items-center gap-3 border-b-[0.8px] border-[rgba(51,51,51,0.1)] px-4 py-3 last:border-0"
             >
-              <div className="flex size-8 items-center justify-center rounded-lg bg-[rgba(51,51,51,0.1)] text-sm text-[rgba(51,51,51,0.35)]">
+              <div className="flex size-8 items-center justify-center rounded-lg bg-[var(--base-alpha-50)] text-sm text-[rgba(51,51,51,0.35)]">
                 {item.glyph}
               </div>
               <div className="min-w-0 flex-1">
@@ -47,7 +47,7 @@ export function InventoryWatch({ onReorder }: { onReorder: (name: string) => voi
                 <button
                   type="button"
                   onClick={() => onReorder(item.name)}
-                  className="h-8 min-w-[72px] rounded-full border-[0.8px] border-[var(--yellow-200)] px-2 text-xs font-semibold text-[var(--yellow-200)]"
+                  className="h-8 min-w-[80px] rounded-full border border-[var(--primary-200)] px-2 text-xs font-semibold text-[var(--primary-400)]"
                 >
                   Reorder
                 </button>

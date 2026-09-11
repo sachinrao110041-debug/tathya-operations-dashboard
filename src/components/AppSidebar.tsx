@@ -7,6 +7,7 @@ import { AssetIcon } from "./AssetIcon";
 
 const items = [
   { href: "/", label: "Overview", src: "/icons/nav-overview.svg" },
+  { href: "/onboarding", label: "Onboarding", src: "/icons/nav-overview.svg" },
   { href: "/orders", label: "Orders", src: "/icons/nav-orders.svg" },
   { href: "/returns", label: "Returns", src: "/icons/nav-returns.svg" },
   { href: "/suppliers", label: "Suppliers", src: "/icons/nav-suppliers.svg" },

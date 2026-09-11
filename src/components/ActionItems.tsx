@@ -9,9 +9,12 @@ export function ActionItems({
   onAction: (key: "orders" | "stock" | "cod" | "shipments") => void;
 }) {
   return (
-    <div className="flex flex-col rounded-xl border border-[var(--primary-100)] bg-[var(--base-alpha-10)] pt-5">
+    <div className="grid gap-3 rounded-2xl border border-[var(--primary-100)] bg-white p-4 lg:grid-cols-2">
       {actionItems.map((item) => (
-        <div key={item.n} className="flex w-full items-start gap-5 rounded-xl px-6 py-[18px]">
+        <div
+          key={item.n}
+          className="flex w-full items-start gap-4 rounded-xl border border-[var(--ink-line)] bg-[var(--surface)] px-4 py-4 transition hover:shadow-[var(--elev-1)]"
+        >
           <div className="flex w-4 flex-col items-center gap-1.5 pt-1">
             <span className="h-5 w-px rounded-full bg-[var(--t2-400)]" />
             <span className="font-[family-name:var(--font-jetbrains)] text-[8px] tracking-[0.8px] text-[var(--t2-400)]">
@@ -38,7 +41,7 @@ export function ActionItems({
           <button
             type="button"
             onClick={() => onAction(item.actionKey)}
-            className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[var(--yellow-200)]"
+            className="mt-1.5 flex items-center gap-1.5 rounded-full border border-[var(--primary-100)] px-2 py-1 text-xs font-medium text-[var(--primary-400)]"
           >
             {item.cta}
             <AssetIcon src="/icons/i-arrow.svg" alt="" box={11} leaf={11} />
