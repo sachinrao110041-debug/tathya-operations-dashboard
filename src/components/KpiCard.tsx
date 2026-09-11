@@ -14,8 +14,8 @@ export function KpiCard({
   const labels = ["M", "T", "W", "T", "F", "S"];
 
   return (
-    <div className="h-[156px] w-full overflow-hidden rounded-2xl border border-[var(--primary-100)] bg-white p-4 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.04)]">
-      <div className="mb-2 flex items-start justify-between">
+    <div className="w-full rounded-2xl border border-[var(--primary-100)] bg-white p-6 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.04)]">
+      <div className="mb-4 flex items-start justify-between gap-4">
         <div>
           <p className="text-sm font-semibold leading-5 text-[var(--neutral-900)]">{title}</p>
           <p className="text-[28px] font-semibold leading-8 text-[var(--neutral-1000)]">{value}</p>
@@ -43,7 +43,7 @@ export function KpiCard({
           </div>
         ))}
       </div>
-      <div className="mt-1 flex items-center gap-3 text-[10px] text-[var(--neutral-700)]">
+      <div className="mt-4 flex items-center gap-3 text-[10px] text-[var(--neutral-700)]">
         <span className="inline-flex items-center gap-1">
           <span className="h-2 w-2 rounded-full bg-[var(--primary-400)]" />
           Current

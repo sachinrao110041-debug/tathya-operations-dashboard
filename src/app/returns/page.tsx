@@ -22,7 +22,7 @@ export default function ReturnsPage() {
                 <th className="px-2 py-3 font-normal">Order</th>
                 <th className="px-2 py-3 font-normal">Reason</th>
                 <th className="px-2 py-3 font-normal">Status</th>
-                <th className="px-2 py-3 font-normal">Action</th>
+                <th className="px-4 py-3 text-right font-normal">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -34,8 +34,7 @@ export default function ReturnsPage() {
                   <td className="px-2 py-3">
                     <StatusBadge status={r.status} />
                   </td>
-                  <td className="px-2 py-3">
-                    {r.status !== "Refunded" ? (
+                  <td className="px-4 py-3 text-right">
                       <button
                         type="button"
                         onClick={() => refundReturn(r.id)}

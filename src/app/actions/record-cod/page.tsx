@@ -42,7 +42,7 @@ export default function RecordCodPage() {
                 <th className="px-2 py-3 font-normal">Customer</th>
                 <th className="px-2 py-3 font-normal">Amount</th>
                 <th className="px-2 py-3 font-normal">Status</th>
-                <th className="px-2 py-3 font-normal">Action</th>
+                <th className="px-4 py-3 text-right font-normal">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -61,10 +61,7 @@ export default function RecordCodPage() {
                     <td className="px-2 py-3">
                       <StatusBadge status={order.status} />
                     </td>
-                    <td className="px-2 py-3">
-                      <button
-                        type="button"
-                        onClick={() => recordCodById(order.id)}
+                    <td className="px-4 py-3 text-right">
                         className="rounded-md border border-[var(--primary-300)] px-2 py-1 text-xs text-[var(--primary-400)]"
                       >
                         Record

@@ -14,15 +14,21 @@ const items = [
   { href: "/shipments", label: "Shipments", src: "/icons/nav-shipments.svg" },
 ];
 
-export function AppSidebar() {
+export function AppSidebar({
+  mobileOpen = false,
+  onClose,
+}: {
+  mobileOpen?: boolean;
+  onClose?: () => void;
+}) {
   const path = usePathname();
   const [collapsed, setCollapsed] = useState(false);
 
   return (
     <aside
-      className={`flex min-h-screen flex-col border-r border-[var(--ink-line)] bg-white transition-[width] duration-200 ${
-        collapsed ? "w-[76px] min-w-[76px]" : "w-[228px] min-w-[228px]"
-      }`}
+      className={`fixed inset-y-0 left-0 z-50 flex h-dvh w-[228px] min-w-[228px] flex-col border-r border-[var(--ink-line)] bg-white transition-transform duration-200 md:sticky md:top-0 md:z-0 ${
+        collapsed ? "md:w-[76px] md:min-w-[76px]" : "md:w-[228px] md:min-w-[228px]"
+      } ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
     >
       <div className={`flex min-h-[52px] items-center gap-2.5 border-b border-[var(--ink-line)] py-3 ${collapsed ? "px-2" : "px-3.5"}`}>
         {collapsed ? null : (
@@ -40,7 +46,7 @@ export function AppSidebar() {
           <AssetIcon src="/icons/nav-collapse.svg" alt="" box={13} leaf={13} />
         </button>
       </div>
-      <nav className="flex flex-1 flex-col gap-1 px-2 py-2.5">
+      <nav className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-2 py-2.5">
         {/* Nav icons are Figma exports at 16×16 */}
         {items.map((item) => {
           const active = path === item.href || (item.href !== "/" && path.startsWith(item.href));
@@ -49,6 +55,7 @@ export function AppSidebar() {
               key={item.href}
               href={item.href}
               title={item.label}
+              onClick={() => onClose?.()}
               className={`relative flex h-[41px] w-full items-center rounded-[8px] py-2.5 text-[13.5px] leading-[20.25px] ${
                 active
                   ? "bg-[var(--primary-100)] font-medium text-[var(--primary-400)] shadow-[0px_0px_12px_0px_rgba(0,0,0,0.2),0px_0px_12px_0px_rgba(255,255,255,0.2)]"

@@ -8,9 +8,11 @@ import { useRouter } from "next/navigation";
 export function DashHeader({
   query,
   onQuery,
+  onMenu,
 }: {
   query: string;
   onQuery: (v: string) => void;
+  onMenu?: () => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
   const { setPanel } = useDashboard();
@@ -36,12 +38,24 @@ export function DashHeader({
   }, []);
 
   return (
-    <header className={`px-6 transition-[padding] duration-200 ${compact ? "pt-2" : "pt-5"}`}>
+    <header className={`px-4 transition-[padding] duration-200 md:px-6 ${compact ? "pt-2" : "pt-5"}`}>
       <div
-        className={`flex items-center gap-4 rounded-2xl border border-[var(--ink-line)] bg-white/90 shadow-[var(--elev-1)] backdrop-blur transition-[padding] duration-200 ${
+        className={`flex items-center gap-3 rounded-2xl border border-[var(--ink-line)] bg-white/90 shadow-[var(--elev-1)] backdrop-blur transition-[padding] duration-200 md:gap-4 ${
           compact ? "px-3 py-2" : "px-4 py-3"
         }`}
       >
+        <button
+          type="button"
+          onClick={onMenu}
+          className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-[var(--primary-100)] bg-white md:hidden"
+          aria-label="Open navigation"
+        >
+          <span className="flex flex-col gap-1">
+            <span className="block h-0.5 w-4 rounded bg-[var(--primary-400)]" />
+            <span className="block h-0.5 w-4 rounded bg-[var(--primary-400)]" />
+            <span className="block h-0.5 w-4 rounded bg-[var(--primary-400)]" />
+          </span>
+        </button>
         <div className="min-w-0 flex-1">
           {compact ? null : (
             <p className="text-xs uppercase tracking-[0.8px] text-[var(--neutral-600)]">Operations Center</p>

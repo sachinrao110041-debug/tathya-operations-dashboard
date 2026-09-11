@@ -23,7 +23,7 @@ export function InventoryWatch({ onReorder }: { onReorder: (name: string) => voi
           return (
             <div
               key={item.name}
-              className="flex items-center gap-3 border-b-[0.8px] border-[rgba(51,51,51,0.1)] px-4 py-3 last:border-0"
+              className="flex items-center gap-3 border-b-[0.8px] border-[rgba(51,51,51,0.1)] px-5 py-4 last:border-0"
             >
               <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[var(--primary-100)] bg-[var(--base-alpha-50)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}

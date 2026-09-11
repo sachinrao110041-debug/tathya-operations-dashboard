@@ -9,7 +9,7 @@ export function ActionItems({
   onAction: (key: "orders" | "stock" | "cod" | "shipments") => void;
 }) {
   return (
-    <div className="grid gap-3 rounded-2xl border border-[var(--primary-100)] bg-white p-4 lg:grid-cols-2">
+    <div className="grid gap-3 rounded-2xl border border-[var(--primary-100)] bg-white p-5 lg:grid-cols-2">
       {actionItems.map((item) => (
         <div
           key={item.n}

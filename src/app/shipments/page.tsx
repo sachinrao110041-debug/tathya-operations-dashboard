@@ -21,7 +21,7 @@ export default function ShipmentsPage() {
                 <th className="px-2 py-3 font-normal">Carrier</th>
                 <th className="px-2 py-3 font-normal">ETA</th>
                 <th className="px-2 py-3 font-normal">Status</th>
-                <th className="px-2 py-3 font-normal">Action</th>
+                <th className="px-4 py-3 text-right font-normal">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -34,8 +34,7 @@ export default function ShipmentsPage() {
                   <td className="px-2 py-3">
                     <StatusBadge status={s.status} />
                   </td>
-                  <td className="px-2 py-3">
-                    {s.status !== "Delivered" ? (
+                  <td className="px-4 py-3 text-right">
                       <button
                         type="button"
                         onClick={() => resolveShipment(s.id)}

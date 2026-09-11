@@ -53,7 +53,7 @@ function OrdersTable() {
               <th className="px-2 py-3 font-normal">Amount</th>
               <th className="px-2 py-3 font-normal">Status</th>
               <th className="px-2 py-3 font-normal">Date</th>
-              <th className="px-2 py-3 font-normal">Action</th>
+              <th className="px-4 py-3 text-right font-normal">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -73,10 +73,7 @@ function OrdersTable() {
                     <StatusBadge status={o.status} />
                   </td>
                   <td className="px-2 py-3 text-sm text-[var(--primary-300)]">{o.date}</td>
-                  <td className="px-2 py-3">
-                    <button
-                      type="button"
-                      onClick={() => advanceOrderStatus(o.id)}
+                  <td className="px-4 py-3 text-right">
                       className="rounded-md border border-[var(--primary-300)] px-2 py-1 text-xs text-[var(--primary-400)]"
                     >
                       Advance

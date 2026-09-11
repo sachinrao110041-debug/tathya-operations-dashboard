@@ -166,7 +166,7 @@ export default function OverviewPage() {
         ))}
       </div>
 
-      <div className="mt-8 rounded-2xl border border-[var(--ink-line)] bg-white p-4 shadow-[var(--elev-1)]">
+      <div className="mt-8 rounded-2xl border border-[var(--ink-line)] bg-white p-5 md:p-6 shadow-[var(--elev-1)]">
         <h2 className="text-[24px] leading-7 text-[var(--ink)]">Needs your attention</h2>
         <p className="mt-1 text-sm leading-5 text-[var(--neutral-800)]">A few things need action today.</p>
         <div className="mt-4">
@@ -194,11 +194,11 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      <div className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white p-4 shadow-[var(--elev-1)]">
+      <div className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white p-5 md:p-6 shadow-[var(--elev-1)]">
         <RecentOrders query={query} />
       </div>
 
-      <div className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white p-4 shadow-[var(--elev-1)]">
+      <div className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white p-5 md:p-6 shadow-[var(--elev-1)]">
         <InventoryWatch
           onReorder={(name) =>
             setPanel({
@@ -216,7 +216,7 @@ export default function OverviewPage() {
         />
       </div>
 
-      <section className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white px-4 py-4 shadow-[var(--elev-1)]">
+      <section className="mt-10 rounded-2xl border border-[var(--ink-line)] bg-white p-5 md:p-6 shadow-[var(--elev-1)]">
         <h2 className="text-2xl leading-8 text-[var(--ink)]">
           Operations snapshot · {range === "today" ? "Today" : range === "week" ? "This week" : "This month"}
         </h2>

@@ -107,6 +107,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const [shipments, setShipments] = useState<Shipment[]>(initialShipments);
   const [returnsData, setReturnsData] = useState<ReturnItem[]>(initialReturns);
   const [notice, setNotice] = useState("");
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     if (!notice) return;
@@ -251,12 +252,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className="flex min-h-screen items-stretch bg-transparent">
-      <AppSidebar />
+    <div className="flex min-h-dvh items-start bg-transparent">
+      {navOpen ? (
+        <button
+          type="button"
+          className="fixed inset-0 z-40 bg-black/30 md:hidden"
+          aria-label="Close navigation"
+          onClick={() => setNavOpen(false)}
+        />
+      ) : null}
+      <AppSidebar mobileOpen={navOpen} onClose={() => setNavOpen(false)} />
       <SearchContext.Provider value={ctx}>
         <div className="flex min-w-0 flex-1 flex-col">
-          <DashHeader query={query} onQuery={setQuery} />
-          <main className="flex-1 px-6 pb-10 pt-2">{children}</main>
+          <DashHeader query={query} onQuery={setQuery} onMenu={() => setNavOpen(true)} />
+          <main className="min-w-0 flex-1 px-4 pb-10 pt-2 md:px-6">{children}</main>
         </div>
       </SearchContext.Provider>
       <SlideOver

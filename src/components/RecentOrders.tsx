@@ -21,7 +21,7 @@ export function RecentOrders({ query }: { query: string }) {
           View all →
         </Link>
       </div>
-      <div className="mt-3 overflow-hidden rounded-2xl border border-[var(--primary-100)] bg-white shadow-[var(--elev-1)]">
+      <div className="mt-3 overflow-x-auto rounded-2xl border border-[var(--primary-100)] bg-white shadow-[var(--elev-1)]">
         <table className="w-full text-left">
           <thead>
             <tr className="border-b-[0.8px] border-[var(--neutral-200)] bg-[rgba(17,28,21,0.02)] text-xs uppercase tracking-[0.6px] text-[var(--primary-300)]">
@@ -30,7 +30,7 @@ export function RecentOrders({ query }: { query: string }) {
               <th className="px-2 py-3 font-normal">Amount</th>
               <th className="px-2 py-3 font-normal">Status</th>
               <th className="px-2 py-3 font-normal">Date</th>
-              <th className="px-2 py-3 font-normal">Action</th>
+              <th className="px-4 py-3 text-right font-normal">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -55,7 +55,7 @@ export function RecentOrders({ query }: { query: string }) {
                     <StatusBadge status={o.status} />
                   </td>
                   <td className="px-2 py-3 text-xs text-[var(--primary-300)]">{o.date}</td>
-                  <td className="px-2 py-3">
+                  <td className="px-4 py-3 text-right">
                     <button
                       type="button"
                       onClick={() =>
