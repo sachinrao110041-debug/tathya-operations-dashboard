@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --primary-100: #c2e0be;
+  --primary-200: #85c07d;
+  --primary-300: #519548;
+  --primary-400: #3f7438;
+  --primary-500: #2d5328;
+  --neutral-100: #ffffff;
+  --neutral-200: #e8e8e8;
+  --neutral-300: #d2d2d2;
+  --neutral-400: #bbbbbb;
+  --neutral-500: #a4a4a4;
+  --neutral-600: #8e8e8e;
+  --neutral-700: #777777;
+  --neutral-800: #606060;
+  --neutral-900: #4a4a4a;
+  --neutral-1000: #333333;
+  --tertiary-100: #d9f0b1;
+  --tertiary-300: #88c425;
+  --tertiary-400: #6a981d;
+  --t2-400: #93bc02;
+  --t2-alpha-10: rgba(190, 242, 2, 0.1);
+  --base-500: #28a50d;
+  --base-alpha-10: rgba(234, 253, 230, 0.1);
+  --base-alpha-50: rgba(234, 253, 230, 0.5);
+  --red-100: #fb3748;
+  --red-200: #d00416;
+  --yellow-100: #ffdb43;
+  --yellow-200: #dfb400;
+  --green-200: #1fc16b;
+  --green-alpha-10: rgba(31, 193, 107, 0.1);
+  --ink: rgba(17, 28, 21, 0.88);
+  --ink-muted: rgba(17, 28, 21, 0.32);
+  --ink-line: rgba(17, 28, 21, 0.06);
+  --surface: #fafbfc;
+  --background: #ffffff;
+  --radius-4: 8px;
+  --radius-6: 12px;
+  --radius-7: 16px;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space);
+  --font-mono: var(--font-jetbrains);
+}
+
+body {
+  background: var(--background);
+  color: var(--neutral-1000);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
