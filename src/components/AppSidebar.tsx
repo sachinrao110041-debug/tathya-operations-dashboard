@@ -20,11 +20,11 @@ export function AppSidebar() {
 
   return (
     <aside
-      className={`flex h-screen flex-col overflow-hidden border-r border-[var(--ink-line)] bg-white transition-[width] duration-200 ${
+      className={`flex min-h-screen flex-col border-r border-[var(--ink-line)] bg-white transition-[width] duration-200 ${
         collapsed ? "w-[76px] min-w-[76px]" : "w-[228px] min-w-[228px]"
       }`}
     >
-      <div className={`flex h-[58px] items-center gap-2.5 border-b border-[var(--ink-line)] ${collapsed ? "px-2" : "px-3.5"}`}>
+      <div className={`flex min-h-[52px] items-center gap-2.5 border-b border-[var(--ink-line)] py-3 ${collapsed ? "px-2" : "px-3.5"}`}>
         {collapsed ? null : (
           <p className="flex-1 font-[family-name:var(--font-space)] text-[15px] font-bold leading-[22.5px] tracking-[-0.3px] text-[var(--ink)]">
             Tathya Dashboard
@@ -40,7 +40,7 @@ export function AppSidebar() {
           <AssetIcon src="/icons/nav-collapse.svg" alt="" box={13} leaf={13} />
         </button>
       </div>
-      <nav className={`flex flex-1 flex-col gap-1 overflow-auto py-2.5 ${collapsed ? "px-2" : "px-2"}`}>
+      <nav className="flex flex-1 flex-col gap-1 px-2 py-2.5">
         {/* Nav icons are Figma exports at 16×16 */}
         {items.map((item) => {
           const active = path === item.href || (item.href !== "/" && path.startsWith(item.href));
@@ -64,7 +64,7 @@ export function AppSidebar() {
           );
         })}
       </nav>
-      <div className={`flex h-[51px] items-center px-2.5 pb-2 pt-2.5 ${collapsed ? "justify-center" : "gap-2.5"}`}>
+      <div className={`mt-auto flex items-center px-2.5 py-3 ${collapsed ? "justify-center" : "gap-2.5"}`}>
         <div className="flex size-[30px] items-center justify-center rounded-[15px] border-[0.8px] border-[#1b7a43] bg-[var(--primary-100)]">
           <span className="font-[family-name:var(--font-space)] text-[11px] font-bold leading-[16.5px] text-[#1b7a43]">
             SC

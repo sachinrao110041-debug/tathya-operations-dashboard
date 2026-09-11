@@ -247,12 +247,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className="flex min-h-screen bg-transparent">
+    <div className="flex min-h-screen items-stretch bg-transparent">
       <AppSidebar />
       <SearchContext.Provider value={ctx}>
         <div className="flex min-w-0 flex-1 flex-col">
           <DashHeader query={query} onQuery={setQuery} />
-          <main className="min-h-0 flex-1 overflow-auto px-6 pb-10 pt-2">{children}</main>
+          <main className="flex-1 px-6 pb-10 pt-2">{children}</main>
         </div>
       </SearchContext.Provider>
       <SlideOver

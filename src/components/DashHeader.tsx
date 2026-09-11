@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AssetIcon } from "./AssetIcon";
 import { useDashboard } from "./AppShell";
 import { useRouter } from "next/navigation";
@@ -15,6 +15,14 @@ export function DashHeader({
   const inputRef = useRef<HTMLInputElement>(null);
   const { setPanel } = useDashboard();
   const router = useRouter();
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setCompact(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -28,15 +36,25 @@ export function DashHeader({
   }, []);
 
   return (
-    <header className="px-6 pt-5">
-      <div className="flex items-center gap-4 rounded-2xl border border-[var(--ink-line)] bg-white/90 px-4 py-3 shadow-[var(--elev-1)] backdrop-blur">
+    <header className={`px-6 transition-[padding] duration-200 ${compact ? "pt-2" : "pt-5"}`}>
+      <div
+        className={`flex items-center gap-4 rounded-2xl border border-[var(--ink-line)] bg-white/90 shadow-[var(--elev-1)] backdrop-blur transition-[padding] duration-200 ${
+          compact ? "px-3 py-2" : "px-4 py-3"
+        }`}
+      >
         <div className="min-w-0 flex-1">
-          <p className="text-xs uppercase tracking-[0.8px] text-[var(--neutral-600)]">Operations Center</p>
-          <h1 className="truncate text-2xl font-semibold leading-8 tracking-normal text-[var(--neutral-1000)]">
+          {compact ? null : (
+            <p className="text-xs uppercase tracking-[0.8px] text-[var(--neutral-600)]">Operations Center</p>
+          )}
+          <h1
+            className={`truncate font-semibold tracking-normal text-[var(--neutral-1000)] ${
+              compact ? "text-lg leading-6" : "text-2xl leading-8"
+            }`}
+          >
             Good Morning, <span className="text-[var(--primary-400)]">Sachin</span>
           </h1>
         </div>
-        <label className="hidden h-11 w-[300px] items-center gap-2 overflow-hidden rounded-xl border border-[var(--primary-100)] bg-[var(--surface)] px-3 md:flex">
+        <label className="hidden h-10 w-[280px] items-center gap-2 overflow-hidden rounded-xl border border-[var(--primary-100)] bg-[var(--surface)] px-3 md:flex">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
           <circle cx="7" cy="7" r="4.5" stroke="#3f7438" strokeWidth="1.2" />
           <path d="M10.5 10.5L13 13" stroke="#3f7438" strokeWidth="1.2" strokeLinecap="round" />
