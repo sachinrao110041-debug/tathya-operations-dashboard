@@ -10,6 +10,7 @@ import {
   initialReturns,
   initialShipments,
   suppliers,
+  imageForCategory,
   type InventoryItem,
   type Order,
   type OrderStatus,
@@ -143,7 +144,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   const addMockProduct = () => {
     const name = `New SKU ${inventory.length + 1}`;
-    setInventory((prev) => [{ name, category: "Accessory", left: 7, max: 80, glyph: "◇" }, ...prev]);
+    setInventory((prev) => [
+      { name, category: "Accessory", left: 7, max: 80, image: imageForCategory("Accessory") },
+      ...prev,
+    ]);
     setNotice(`Added ${name} to inventory.`);
     return name;
   };
@@ -154,7 +158,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     left: number;
     max: number;
   }) => {
-    setInventory((prev) => [{ ...input, glyph: "◇" }, ...prev]);
+    setInventory((prev) => [{ ...input, image: imageForCategory(input.category, input.name) }, ...prev]);
     setNotice(`Product ${input.name} added to inventory.`);
     return input.name;
   };

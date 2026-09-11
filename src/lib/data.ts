@@ -88,15 +88,29 @@ export type InventoryItem = {
   category: string;
   left: number;
   max: number;
-  glyph: string;
+  image: string;
 };
 
+export const categoryImages: Record<string, string> = {
+  Ring: "/products/ring.svg",
+  Bracelet: "/products/bracelet.svg",
+  Necklace: "/products/pearl-necklace.svg",
+  Earrings: "/products/earrings.svg",
+  Accessory: "/products/accessory.svg",
+};
+
+export function imageForCategory(category: string, name?: string) {
+  if (name?.toLowerCase().includes("temple")) return "/products/temple-necklace.svg";
+  if (name?.toLowerCase().includes("pearl")) return "/products/pearl-necklace.svg";
+  return categoryImages[category] ?? "/products/accessory.svg";
+}
+
 export const initialInventory: InventoryItem[] = [
-  { name: "Silver Stack Ring", category: "Ring", left: 3, max: 80, glyph: "◻" },
-  { name: "Minimal Chain Bracelet", category: "Bracelet", left: 5, max: 80, glyph: "⌒" },
-  { name: "Pearl Drop Necklace", category: "Necklace", left: 8, max: 80, glyph: "○" },
-  { name: "Temple Gold Necklace", category: "Necklace", left: 9, max: 80, glyph: "○" },
-  { name: "Gold Hoop Earrings", category: "Earrings", left: 12, max: 80, glyph: "◇" },
+  { name: "Silver Stack Ring", category: "Ring", left: 3, max: 80, image: "/products/ring.svg" },
+  { name: "Minimal Chain Bracelet", category: "Bracelet", left: 5, max: 80, image: "/products/bracelet.svg" },
+  { name: "Pearl Drop Necklace", category: "Necklace", left: 8, max: 80, image: "/products/pearl-necklace.svg" },
+  { name: "Temple Gold Necklace", category: "Necklace", left: 9, max: 80, image: "/products/temple-necklace.svg" },
+  { name: "Gold Hoop Earrings", category: "Earrings", left: 12, max: 80, image: "/products/earrings.svg" },
 ];
 
 export type Shipment = {
