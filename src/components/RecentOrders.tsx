@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { orders } from "@/lib/data";
 import { StatusBadge } from "./StatusBadge";
+import { useDashboard } from "./AppShell";
 
 export function RecentOrders({ query }: { query: string }) {
+  const { orders, setPanel } = useDashboard();
   const rows = orders.filter((o) =>
     `${o.id} ${o.customer} ${o.status}`.toLowerCase().includes(query.toLowerCase()),
   );
@@ -29,12 +30,13 @@ export function RecentOrders({ query }: { query: string }) {
               <th className="px-2 py-2 font-normal">Amount</th>
               <th className="px-2 py-2 font-normal">Status</th>
               <th className="px-2 py-2 font-normal">Date</th>
+              <th className="px-2 py-2 font-normal">Action</th>
             </tr>
           </thead>
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-10 text-center text-sm text-[var(--neutral-600)]">
+                <td colSpan={6} className="px-4 py-10 text-center text-sm text-[var(--neutral-600)]">
                   No orders match “{query}”.
                 </td>
               </tr>
@@ -53,6 +55,20 @@ export function RecentOrders({ query }: { query: string }) {
                     <StatusBadge status={o.status} />
                   </td>
                   <td className="px-2 py-3 text-xs text-[var(--primary-300)]">{o.date}</td>
+                  <td className="px-2 py-3">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPanel({
+                          title: `Order ${o.id}`,
+                          body: `${o.customer} • ${o.amount} • ${o.items} item(s) • ${o.status}`,
+                        })
+                      }
+                      className="text-xs text-[var(--yellow-200)]"
+                    >
+                      Details
+                    </button>
+                  </td>
                 </tr>
               ))
             )}

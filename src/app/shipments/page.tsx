@@ -1,11 +1,10 @@
 "use client";
 
-import { shipments } from "@/lib/data";
 import { StatusBadge } from "@/components/StatusBadge";
 import { useDashboard } from "@/components/AppShell";
 
 export default function ShipmentsPage() {
-  const { query } = useDashboard();
+  const { query, shipments, resolveShipment } = useDashboard();
   const rows = shipments.filter((s) => `${s.id} ${s.order} ${s.carrier}`.toLowerCase().includes(query.toLowerCase()));
   return (
     <div className="pt-4">
@@ -22,6 +21,7 @@ export default function ShipmentsPage() {
                 <th className="px-2 py-3 font-normal">Carrier</th>
                 <th className="px-2 py-3 font-normal">ETA</th>
                 <th className="px-2 py-3 font-normal">Status</th>
+                <th className="px-2 py-3 font-normal">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -33,6 +33,19 @@ export default function ShipmentsPage() {
                   <td className="px-2 py-3">{s.eta}</td>
                   <td className="px-2 py-3">
                     <StatusBadge status={s.status} />
+                  </td>
+                  <td className="px-2 py-3">
+                    {s.status !== "Delivered" ? (
+                      <button
+                        type="button"
+                        onClick={() => resolveShipment(s.id)}
+                        className="rounded-md border border-[var(--primary-300)] px-2 py-1 text-xs text-[var(--primary-400)]"
+                      >
+                        Mark delivered
+                      </button>
+                    ) : (
+                      <span className="text-xs text-[var(--neutral-600)]">Done</span>
+                    )}
                   </td>
                 </tr>
               ))}

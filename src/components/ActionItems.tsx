@@ -1,10 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import { actionItems } from "@/lib/data";
 import { AssetIcon } from "./AssetIcon";
 
-export function ActionItems() {
+export function ActionItems({
+  onAction,
+}: {
+  onAction: (key: "orders" | "stock" | "cod" | "shipments") => void;
+}) {
   return (
     <div className="flex flex-col rounded-xl border border-[var(--primary-100)] bg-[var(--base-alpha-10)] pt-5">
       {actionItems.map((item) => (
@@ -32,10 +35,14 @@ export function ActionItems() {
               )}
             </p>
           </div>
-          <Link href={item.href} className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[var(--yellow-200)]">
+          <button
+            type="button"
+            onClick={() => onAction(item.actionKey)}
+            className="mt-1.5 flex items-center gap-1.5 text-xs font-medium text-[var(--yellow-200)]"
+          >
             {item.cta}
             <AssetIcon src="/icons/i-arrow.svg" alt="" box={11} leaf={11} />
-          </Link>
+          </button>
         </div>
       ))}
     </div>

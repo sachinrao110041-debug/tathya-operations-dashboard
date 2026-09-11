@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { inventory } from "@/lib/data";
+import { useDashboard } from "./AppShell";
 
 export function InventoryWatch({ onReorder }: { onReorder: (name: string) => void }) {
+  const { inventory } = useDashboard();
   return (
     <section>
       <div className="flex items-end justify-between">

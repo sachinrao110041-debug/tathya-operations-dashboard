@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { orders, type OrderStatus } from "@/lib/data";
+import { type OrderStatus } from "@/lib/data";
 import { StatusBadge } from "@/components/StatusBadge";
 import { useDashboard } from "@/components/AppShell";
 
@@ -10,7 +10,7 @@ const filters: Array<"All" | OrderStatus> = ["All", "COD Pending", "Shipped", "D
 
 function OrdersTable() {
   const params = useSearchParams();
-  const { query } = useDashboard();
+  const { query, orders, advanceOrderStatus } = useDashboard();
   const [status, setStatus] = useState<typeof filters[number]>("All");
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function OrdersTable() {
       const matchS = status === "All" || o.status === status;
       return matchQ && matchS;
     });
-  }, [query, status]);
+  }, [orders, query, status]);
 
   return (
     <div className="pt-4">
@@ -53,12 +53,13 @@ function OrdersTable() {
               <th className="px-2 py-3 font-normal">Amount</th>
               <th className="px-2 py-3 font-normal">Status</th>
               <th className="px-2 py-3 font-normal">Date</th>
+              <th className="px-2 py-3 font-normal">Action</th>
             </tr>
           </thead>
           <tbody>
             {rows.length === 0 ? (
               <tr>
-                <td colSpan={5} className="px-4 py-12 text-center text-sm text-[var(--neutral-600)]">
+                <td colSpan={6} className="px-4 py-12 text-center text-sm text-[var(--neutral-600)]">
                   Empty — no orders for this filter.
                 </td>
               </tr>
@@ -72,6 +73,15 @@ function OrdersTable() {
                     <StatusBadge status={o.status} />
                   </td>
                   <td className="px-2 py-3 text-sm text-[var(--primary-300)]">{o.date}</td>
+                  <td className="px-2 py-3">
+                    <button
+                      type="button"
+                      onClick={() => advanceOrderStatus(o.id)}
+                      className="rounded-md border border-[var(--primary-300)] px-2 py-1 text-xs text-[var(--primary-400)]"
+                    >
+                      Advance
+                    </button>
+                  </td>
                 </tr>
               ))
             )}

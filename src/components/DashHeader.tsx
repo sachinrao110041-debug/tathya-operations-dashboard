@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { AssetIcon } from "./AssetIcon";
+import { useDashboard } from "./AppShell";
+import { useRouter } from "next/navigation";
 
 export function DashHeader({
   query,
@@ -11,6 +13,8 @@ export function DashHeader({
   onQuery: (v: string) => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const { setPanel } = useDashboard();
+  const router = useRouter();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -46,15 +50,65 @@ export function DashHeader({
       </label>
       <button
         type="button"
+        onClick={() =>
+          setPanel({
+            title: "Notifications",
+            body: (
+              <div className="space-y-3">
+                <div className="rounded-lg border border-[var(--neutral-200)] p-3">
+                  <p className="text-sm font-medium text-[var(--neutral-1000)]">5 orders due for shipment today</p>
+                  <p className="text-xs text-[var(--neutral-700)]">Open Orders and dispatch by 6 PM.</p>
+                </div>
+                <div className="rounded-lg border border-[var(--neutral-200)] p-3">
+                  <p className="text-sm font-medium text-[var(--neutral-1000)]">6 SKUs are below reorder threshold</p>
+                  <p className="text-xs text-[var(--neutral-700)]">Inventory watch recommends immediate PO.</p>
+                </div>
+                <div className="rounded-lg border border-[var(--neutral-200)] p-3">
+                  <p className="text-sm font-medium text-[var(--neutral-1000)]">12 COD confirmations pending</p>
+                  <p className="text-xs text-[var(--neutral-700)]">Record COD to avoid dispatch delays.</p>
+                </div>
+              </div>
+            ),
+            actions: [
+              { label: "Open Orders", onClick: () => router.push("/orders") },
+              { label: "Open COD Center", tone: "primary", onClick: () => router.push("/actions/record-cod") },
+            ],
+          })
+        }
         className="relative flex size-9 items-center justify-center rounded-[8px] border-[0.8px] border-[var(--primary-400)] bg-white"
         aria-label="Notifications"
       >
         <AssetIcon src="/icons/i-bell.svg" alt="" box={15} leaf={15} />
         <span className="absolute left-[20.4px] top-1.5 size-2 rounded-full border-[1.6px] border-white bg-[var(--red-100)]" />
       </button>
-      <div className="flex size-9 items-center justify-center rounded-[18px] border-[0.8px] border-[var(--primary-300)] bg-[rgba(27,103,107,0.1)] text-[13.68px] font-semibold leading-[20.52px] text-[var(--primary-300)]">
+      <button
+        type="button"
+        onClick={() =>
+          setPanel({
+            title: "Profile",
+            body: (
+              <div className="space-y-3">
+                <div className="rounded-lg border border-[var(--neutral-200)] p-3">
+                  <p className="text-sm font-semibold text-[var(--neutral-1000)]">Sachin C.</p>
+                  <p className="text-xs text-[var(--neutral-700)]">Admin · Tathya Operations</p>
+                </div>
+                <div className="text-xs text-[var(--neutral-700)]">
+                  Quick actions for profile, dashboard settings, and token reference.
+                </div>
+              </div>
+            ),
+            actions: [
+              { label: "Design tokens", onClick: () => router.push("/tokens") },
+              { label: "View suppliers", onClick: () => router.push("/suppliers") },
+              { label: "Logout", tone: "primary", onClick: () => router.push("/") },
+            ],
+          })
+        }
+        className="flex size-9 items-center justify-center rounded-[18px] border-[0.8px] border-[var(--primary-300)] bg-[rgba(27,103,107,0.1)] text-[13.68px] font-semibold leading-[20.52px] text-[var(--primary-300)]"
+        aria-label="Profile menu"
+      >
         SC
-      </div>
+      </button>
     </header>
   );
 }

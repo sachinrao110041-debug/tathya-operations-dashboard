@@ -4,11 +4,13 @@ export function SlideOver({
   open,
   title,
   onClose,
+  actions,
   children,
 }: {
   open: boolean;
   title: string;
   onClose: () => void;
+  actions?: Array<{ label: string; onClick: () => void; tone?: "primary" | "neutral" }>;
   children: React.ReactNode;
 }) {
   if (!open) return null;
@@ -25,6 +27,27 @@ export function SlideOver({
           </button>
         </div>
         <div className="flex-1 overflow-auto px-6 py-4">{children}</div>
+        {actions && actions.length > 0 ? (
+          <div className="flex gap-2 border-t border-[var(--ink-line)] px-6 py-4">
+            {actions.map((action) => (
+              <button
+                key={action.label}
+                type="button"
+                onClick={() => {
+                  action.onClick();
+                  onClose();
+                }}
+                className={`rounded-md px-3 py-2 text-sm ${
+                  action.tone === "primary"
+                    ? "bg-[var(--primary-400)] text-white"
+                    : "border border-[var(--neutral-300)] text-[var(--neutral-800)]"
+                }`}
+              >
+                {action.label}
+              </button>
+            ))}
+          </div>
+        ) : null}
       </aside>
     </div>
   );

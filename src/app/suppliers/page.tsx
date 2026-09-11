@@ -1,11 +1,10 @@
 "use client";
 
-import { suppliers } from "@/lib/data";
 import { useDashboard } from "@/components/AppShell";
 
 export default function SuppliersPage() {
-  const { query, setPanel } = useDashboard();
-  const rows = suppliers.filter((s) => s.name.toLowerCase().includes(query.toLowerCase()));
+  const { query, setPanel, suppliersData } = useDashboard();
+  const rows = suppliersData.filter((s) => s.name.toLowerCase().includes(query.toLowerCase()));
   return (
     <div className="pt-4">
       <h1 className="text-2xl font-semibold">Suppliers</h1>
@@ -14,7 +13,12 @@ export default function SuppliersPage() {
           <button
             key={s.name}
             type="button"
-            onClick={() => setPanel({ title: s.name, body: `Lead time ${s.lead}. Open POs: ${s.openPos}.` })}
+            onClick={() =>
+              setPanel({
+                title: s.name,
+                body: `Lead time ${s.lead}. Open POs: ${s.openPos}.`,
+              })
+            }
             className="flex items-center justify-between rounded-2xl border border-[var(--primary-100)] bg-white px-4 py-3 text-left"
           >
             <span>
