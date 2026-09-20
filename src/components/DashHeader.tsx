@@ -129,13 +129,12 @@ export function DashHeader({
                     <p className="text-xs text-[var(--neutral-700)]">Admin · Tathya Operations</p>
                   </div>
                   <div className="text-xs text-[var(--neutral-700)]">
-                    Quick actions for profile, dashboard settings, and token reference.
+                    Quick actions for profile and dashboard settings.
                   </div>
                 </div>
               ),
               actions: [
                 { label: "Onboarding", onClick: () => router.push("/onboarding") },
-                { label: "Design tokens", onClick: () => router.push("/tokens") },
                 { label: "View suppliers", onClick: () => router.push("/suppliers") },
                 { label: "Logout", tone: "primary", onClick: () => router.push("/") },
               ],
