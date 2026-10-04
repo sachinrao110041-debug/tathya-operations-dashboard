@@ -117,8 +117,9 @@ export default function OverviewPage() {
           <button
             type="button"
             onClick={() => router.push("/onboarding")}
-            className="rounded-[8px] border border-[var(--primary-200)] px-3 py-2 text-[13px] text-[var(--primary-400)]"
+            className="inline-flex items-center gap-2 rounded-[8px] border border-[var(--primary-200)] px-3 py-2 text-[13px] text-[var(--primary-400)]"
           >
+            <AssetIcon src="/icons/i-package.svg" alt="" box={12} leaf={12} />
             Onboarding
           </button>
         </div>

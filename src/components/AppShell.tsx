@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { AppSidebar } from "./AppSidebar";
 import { DashHeader } from "./DashHeader";
+import { OpsChatbot } from "./OpsChatbot";
 import { SlideOver } from "./SlideOver";
 import {
   initialInventory,
@@ -267,6 +268,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <DashHeader query={query} onQuery={setQuery} onMenu={() => setNavOpen(true)} />
           <main className="min-w-0 flex-1 px-4 pb-10 pt-2 md:px-6">{children}</main>
         </div>
+        <OpsChatbot
+          orders={orders}
+          inventory={inventory}
+          shipments={shipments}
+          returnsData={returnsData}
+          createMockOrder={addMockOrder}
+          createMockProduct={addMockProduct}
+          recordCod={recordCod}
+        />
       </SearchContext.Provider>
       <SlideOver
         open={!!panel}
